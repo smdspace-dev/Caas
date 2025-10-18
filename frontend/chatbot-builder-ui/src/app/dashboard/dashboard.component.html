@@ -1,0 +1,84 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Toolbar -->
+  <mat-toolbar color="primary" class="shadow-md">
+    <span class="flex-1">RAG Chatbot Builder - Dashboard</span>
+    <span *ngIf="currentUser" class="mr-4">Welcome, {{ currentUser.name }}!</span>
+    <button mat-icon-button (click)="goToHome()" title="Home">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-icon-button (click)="logout()" title="Logout">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-8">
+    
+    <!-- Welcome Section -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
+      <p class="text-lg text-gray-600">Phase 2 Authentication Complete!</p>
+    </div>
+
+    <!-- User Info Card -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <mat-card class="p-6">
+        <h3 class="text-xl font-semibold mb-4">User Information</h3>
+        <div *ngIf="currentUser" class="space-y-2">
+          <p><strong>Name:</strong> {{ currentUser.name }}</p>
+          <p><strong>Email:</strong> {{ currentUser.email }}</p>
+          <p><strong>Plan:</strong> {{ currentUser.plan }}</p>
+          <p><strong>Member since:</strong> {{ currentUser.created_at | date:'mediumDate' }}</p>
+          <p *ngIf="currentUser.last_login"><strong>Last login:</strong> {{ currentUser.last_login | date:'medium' }}</p>
+        </div>
+      </mat-card>
+
+      <!-- Quick Stats -->
+      <mat-card class="p-6">
+        <h3 class="text-xl font-semibold mb-4">Quick Stats</h3>
+        <div class="space-y-2">
+          <p><strong>Chatbots:</strong> 0</p>
+          <p><strong>Documents:</strong> 0</p>
+          <p><strong>Queries:</strong> 0</p>
+          <p class="text-sm text-gray-500">Coming in Phase 3!</p>
+        </div>
+      </mat-card>
+
+      <!-- Status -->
+      <mat-card class="p-6">
+        <h3 class="text-xl font-semibold mb-4">System Status</h3>
+        <div class="space-y-2">
+          <p class="flex items-center">
+            <mat-icon class="text-green-500 mr-2">check_circle</mat-icon>
+            Authentication Working
+          </p>
+          <p class="flex items-center">
+            <mat-icon class="text-green-500 mr-2">check_circle</mat-icon>
+            JWT Tokens Active
+          </p>
+          <p class="flex items-center">
+            <mat-icon class="text-blue-500 mr-2">schedule</mat-icon>
+            RAG Pipeline (Phase 3)
+          </p>
+        </div>
+      </mat-card>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex space-x-4">
+      <button mat-raised-button color="primary" disabled>
+        <mat-icon class="mr-2">add</mat-icon>
+        Create Chatbot (Phase 3)
+      </button>
+      <button mat-raised-button color="accent" disabled>
+        <mat-icon class="mr-2">upload_file</mat-icon>
+        Upload Documents (Phase 3)
+      </button>
+      <button mat-raised-button (click)="goToHome()">
+        <mat-icon class="mr-2">home</mat-icon>
+        Back to Home
+      </button>
+    </div>
+
+  </div>
+</div>
